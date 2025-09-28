@@ -1,0 +1,234 @@
+% !TEX root = HW1.tex
+\documentclass[11pt,epic]{article}
+\textwidth=6.5in
+\textheight=8.5in
+\usepackage{url}
+\usepackage{hyperref}
+
+\usepackage{mathtools,amssymb,bm}
+\usepackage{booktabs}
+\usepackage{psfrag}
+\usepackage{amsthm}
+\usepackage{epstopdf}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{latexsym}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{pdfpages}
+\def\argmin{\operatornamewithlimits{arg\, min}}
+\usepackage{color}
+\usepackage{framed}
+
+\usepackage{listings}
+\usepackage{pdfpages}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% \lstdefinestyle{mystyle}{
+%     backgroundcolor=\color{backcolour},   
+%     commentstyle=\color{codegreen},
+%     keywordstyle=\color{magenta},
+%     numberstyle=\tiny\color{codegray},
+%     stringstyle=\color{codepurple},
+%     basicstyle=\ttfamily\footnotesize,
+%     breakatwhitespace=false,         
+%     breaklines=true,                 
+%     captionpos=b,                    
+%     keepspaces=true,                 
+%     numbers=left,                    
+%     numbersep=5pt,                  
+%     showspaces=false,                
+%     showstringspaces=false,
+%     showtabs=false,                  
+%     tabsize=2
+% }
+
+\lstset{
+    basicstyle=\footnotesize\ttfamily, % Use a smaller font size
+    numbers=left,                     % Line numbers on the left
+    numberstyle=\tiny,                % Smaller line number size
+    frame=single,                     % Frame around the code
+    breaklines=true                   % Enable line breaking
+}
+
+% \definecolor{gray}{rgb}{0.3,0.3,0.3}
+\definecolor{gray}{rgb}{0.7,0.01,0.2}
+\definecolor{darkgreen}{rgb}{0,0.55,0}
+\definecolor{purple}{rgb}{0.5,0,1}
+\raggedbottom
+\newenvironment{solution}
+  {\par\medskip
+  \color{gray}%
+   \begin{framed}
+   \textbf{Solution: \newline}\ignorespaces}
+ {\end{framed}
+  \medskip}
+
+
+  
+\begin{document}
+
+\title{CSE6740 CDA Homework 1}
+\author{
+Name:  \\
+GTID: 
+}
+\date{Deadline: Sep 14th 11:59 pm ET}
+\maketitle
+
+\section{Principal Component Analysis (PCA) [15 pts]}
+
+\subsection{Reconstruction error and variance maximization [5 pts] }
+
+Assume the centered data matrix $x\in\mathbb{R}^{n\times d}$ has rows $\mathbf{x}_1^\top,\ldots,\mathbf{x}_n^\top$. Let $q\le d$ and choose $q$ unit-length, mutually orthogonal directions $\mathbf{w}_1,\ldots,\mathbf{w}_q\in\mathbb{R}^d$. Define $w=[\mathbf{w}_1\ \cdots\ \mathbf{w}_q]\in\mathbb{R}^{d\times q}$.
+
+\begin{enumerate}
+\item[(a)] Write $w$ as the matrix formed by stacking the $\mathbf{w}_i$. Prove that $w^\top w = I_q$.
+
+\item[(b)] \textbf{Scores:} Find the $n\times q$ matrix of $q$-dimensional scores in terms of $x$ and $w$. \textit{Hint: your answer should reduce to $\mathbf{x}_i^\top\mathbf{w}_1$ when $q=1$.}
+
+\item[(c)] \textbf{Reconstructions:} Find the $n\times d$ matrix of $d$-dimensional approximations (reconstructions) based on these scores, in terms of $x$ and $w$. \textit{Hint: your answer should reduce to $(\mathbf{x}_i^\top\mathbf{w}_1)\mathbf{w}_1^\top$ when $q=1$.}
+
+\item[(d)] Show that the mean-squared reconstruction error obtained using $\mathbf{w}_1,\ldots,\mathbf{w}_q$ is the sum of two terms: one that depends only on $x$ (and not on $w$), and another that depends only on the scores along those directions (and not otherwise on what those directions are). 
+
+\item[(e)] Explain in what sense minimizing projection residuals is equivalent to maximizing the sum of the variances of the scores along the different directions.
+\end{enumerate}
+
+\begin{solution}
+
+\end{solution}
+
+
+\subsection{First Principal Component via Projection-Error Minimization [10pts]} 
+
+Let $\{\mathbf{x}_1,\ldots,\mathbf{x}_n\}\subset\mathbb{R}^d$ be centered and standardized so each coordinate has unit variance. For a unit vector $\mathbf{v}$, define $f_{\mathbf{v}}(\mathbf{x})$ to be the projection of $\mathbf{x}$ onto the line $\mathcal{V}=\{\alpha\mathbf{v}:\alpha\in\mathbb{R}\}$, i.e.,
+\[
+f_{\mathbf{v}}(\mathbf{x})=\arg\min_{\mathbf{u}\in\mathcal{V}}\|\mathbf{x}-\mathbf{u}\|^2
+\]
+Show that the unit vector minimizing the mean squared projection error,
+\[
+\arg\min_{\|\mathbf{v}\|_2=1}\ \sum_{i=1}^n \bigl\|\mathbf{x}_i - f_{\mathbf{v}}(\mathbf{x}_i)\bigr\|_2^2,
+\]
+is the first principal component of the data.
+
+
+\begin{solution}
+
+\end{solution}
+
+\section{Density Estimation}
+\subsection{Call Center Counts and Likelihood-based Estimation [5pts]}  
+
+A call center records the number of customer calls per hour. Over one week you collect data for 70 hours. Typical hourly counts are: 6, 9, 7, 11, $\ldots$  
+
+\begin{enumerate}
+    \item Suggest an appropriate probability distribution for this data and justify your choice.  
+    \item Find the parameter estimate that makes the observed data most probable under your chosen distribution.  
+\end{enumerate}  
+
+\begin{solution}
+
+\end{solution}  
+
+---
+
+\subsection{Pareto Distribution Parameter Estimation [5pts]}  
+
+The Pareto distribution has been used in economics to model income and wealth distributions with slowly decaying tails. Its density is given by  
+\[
+f(x \mid x_0, \theta) = \theta x_0^{\theta} x^{-(\theta+1)}, \quad x \geq x_0,\ \theta > 0,
+\]  
+where $x_0$ is known. Based on $n$ i.i.d. samples $x_1,\ldots,x_n$, find the estimator of $\theta$ that maximizes the likelihood function.  
+
+\begin{solution}
+
+\end{solution}  
+
+---
+
+\subsection{Parametric vs Nonparametric Density Choice [5pts]}  
+
+Consider the following two figures showing empirical density plots.  
+
+\begin{center}
+\includegraphics[width=0.7\linewidth]{figureA.jpeg} \\
+\textbf{Figure A}  
+
+\vspace{0.5cm}
+\includegraphics[width=0.7\linewidth]{figureB.jpeg} \\ 
+\textbf{Figure B}  
+\end{center}
+\begin{enumerate}
+    \item For Figure A, decide whether a \textbf{parametric} or \textbf{nonparametric} density estimation method is more appropriate. Justify your answer and suggest a suitable method.  
+    \item Repeat the same question for Figure B.  
+\end{enumerate}  
+
+\begin{solution}
+
+\end{solution}  
+
+
+\section{Expectation-Maximization (EM) Algorithm [20 pts]}
+\subsection{Relation to K-means [8pts]}
+Consider a Gaussian mixture model in $\mathbb{R}^d$ with fixed covariance matrices $\epsilon \mathbf{I}$ for all the mixture components, where $\mathbf{I}$ is the identity matrix and $\epsilon > 0$ is a given constant. The class-conditional density is  
+\begin{equation*}
+    p(\mathbf{x}|\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)=
+    \frac{1}{(2\pi\epsilon)^{d/2}}\exp\left({-\frac{1}{2\epsilon}\|\mathbf{x}-\boldsymbol{\mu}_k\|^2}\right).
+\end{equation*}
+We now consider the EM algorithm for a mixture of K Gaussians of this form while treating $\epsilon$ as a fixed constant instead of a parameter to estimate. Let $\{\pi_k\}_{k=1}^K$ be the mixing proportions and $\{\mathbf{x}^i\}_{i=1}^n$ the data points. The latent variable $z_i$ indicates the Gaussian component to which the data point $\mathbf{x}^i$ belongs.
+\begin{enumerate}[label=(\alph*)]
+    \item Write down the posterior probability $\tau_k^i=p(z_i=k|\mathbf{x}^i)$ in this setting.
+    \begin{solution}
+        
+    \end{solution}
+
+
+    \item Show that in the limit $\epsilon \rightarrow 0$, maximizing the expected complete-data log likelihood \begin{equation*}
+        \mathbb{E}_{z_1\sim p(z_1|\mathbf{x}^1), ...,z_n\sim p(z_n|\mathbf{x}^n)}\left[\log{\prod_{i=1}^n p(\mathbf{x}^i, z_i|\boldsymbol{\pi}, \boldsymbol{\mu})}\right]
+    \end{equation*} is equivalent to minimizing the K-means objective $\frac{1}{n}\sum_{i=1}^n\left\|\mathbf{x}^i-\boldsymbol{\mu}_{c(i)}\right\|^2$, where $c(i)=\argmin_k \left\|\mathbf{x}^i-\boldsymbol{\mu}_k\right\|^2$.
+    \begin{solution}
+        
+    \end{solution}
+    \end{enumerate}
+
+\subsection{Mixture of Exponential Distributions [12pts]}
+In this question, you will extend the EM algorithm to the mixture of exponential distributions. Suppose we have $N$ i.i.d samples $x_1, x_2, ..., x_N\in[0, \infty)$ drawn from a mixture of $K$ exponential components. Let mixture weights $\boldsymbol{\pi}=\left(\pi_1, \pi_2, ..., \pi_K\right)$ satisfy $\pi_k \geq 0$ and $\sum_{k=1}^K\pi_k=1$, and component rates $\boldsymbol{\lambda}=\left(\lambda_1, \lambda_2, ..., \lambda_K\right)$ satisfy $\lambda_k>0$. Given the component $k$, the likelihood of observing an instance $x$ is $P(x|k)=\lambda_ke^{-\lambda_kx}$.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Write down the log-likelihood $L(\boldsymbol{\pi}, \boldsymbol{\lambda})$ for $N$ observations $x_1, x_2, ..., x_N$.
+    \begin{solution}
+        
+    \end{solution}
+    \item Given $\boldsymbol{\pi}$ and $\boldsymbol{\lambda}$, derive the lower bound of the log-likelihood $L(\boldsymbol{\pi}, \boldsymbol{\lambda})$ using Jensen's inequality, and write down the update rule for E-step.
+    \begin{solution}
+        
+    \end{solution}
+    \item Write down the M-step which maximizes your lower bound written above. To receive full credits, you should provide the answer step by step.
+    \begin{solution}
+        
+    \end{solution}
+\end{enumerate}
+
+
+\section{Programming}
+Please use \href{https://drive.google.com/drive/folders/1YECQBUdEhWzw2gfg_ZYUWyohJu2xH1Ws?usp=drive_link}{this link} to download all the required files. This homework contains only a ipynb, which you can make a copy and run on Google Colab
+\subsection*{Deliverables}
+For the programming part, please submit your \texttt{.ipynb} file to the programming autograder. Then, use \texttt{File} (top-left corner) → \texttt{Print} to generate and submit a PDF.  
+
+Expected files
+\begin{itemize}
+    \item \texttt{HW1.pdf}
+    \item \texttt{HW1.ipynb}
+    \item \texttt{hw1.ipynb - Colab.pdf}
+\end{itemize}
+
+
+\bibliographystyle{elsarticle-num} 
+
+\end{document}
